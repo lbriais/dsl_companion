@@ -2,6 +2,17 @@ module DSLCompanion
 
   module ContextHelper
 
+
+    # def with_dictionary &block
+    #   @within_dictionary = true
+    #
+    #   raise "'with_dictionary' cannot be processed in this context !" unless interpreter?
+    #   execute_within_context @context, &block
+    # ensure
+    #   @within_dictionary = false
+    # end
+
+
     def execute_within_context context=@context, &block
       # Execute the block if any
       if block_given?
@@ -19,25 +30,6 @@ module DSLCompanion
     end
 
 
-    # def with_dictionary &block
-    #   @within_dictionary = true
-    #
-    #   raise "'with_dictionary' cannot be processed in this context !" unless interpreter?
-    #   execute_within_context @context, &block
-    # ensure
-    #   @within_dictionary = false
-    # end
-
-    def define *args, &block
-      extra = args.shift
-      method_name = "define_#{extra}"
-      if respond_to? method_name.to_sym
-        block_given? ? self.send(method_name, *args, &block) : self.send(method_name, *args)
-      else
-        block_given? ? method_missing(method_name.to_sym, *args, & block) : method_missing(method_name.to_sym, *args)
-      end
-    end
-
     #  def within_dictionary?
     #    if interpreter?
     #      @within_dictionary
@@ -46,17 +38,16 @@ module DSLCompanion
     #    end
     # end
 
-    def interpreter?
-      self.is_a? DSLHelper::Interpreter
-    end
+    # 
 
-    def interpreter_exec_mode mode=nil
-      if mode.nil?
-        @interpreter.exec_mode
-      else
-        @interpreter.exec_mode = mode
-      end
-    end
+
+    # def interpreter_exec_mode mode=nil
+    #   if mode.nil?
+    #     @interpreter.exec_mode
+    #   else
+    #     @interpreter.exec_mode = mode
+    #   end
+    # end
 
 
   end

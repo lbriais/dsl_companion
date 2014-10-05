@@ -1,6 +1,8 @@
 module DSLCompanion
   class Interpreter
 
+    include DSLCompanion::Features::Basic
+
     attr_accessor :logger
 
     DEFAULT_EXEC_MODE=:lazy

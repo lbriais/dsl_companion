@@ -29,6 +29,13 @@ describe DSLCompanion::Interpreter do
 
   end
 
+  it 'should give access to some convenience methods' do
+    interpreter = subject.new
+    expect(interpreter.respond_to? :define).to be_truthy
+    expect(interpreter.respond_to? :define).to be_truthy
+    expect(interpreter.respond_to? :define).to be_truthy
+  end
+
   context 'when in lazy mode' do
 
     it 'should only report through logging errors in the DSL' do
