@@ -1,8 +1,6 @@
 module DSLHelper
   class Interpreter
 
-
-
     DEFAULT_EXEC_MODE=:lazy
 
     def run file=nil, &block
@@ -49,7 +47,6 @@ module DSLHelper
       self.extend(mod)
     end
 
-
     def method_missing(symbolic_name, *args)
       method_name ||= symbolic_name.to_s
       message = "DSL Interpreter: method '#{method_name}'"
@@ -57,7 +54,7 @@ module DSLHelper
       message += ' is unknown'
       message += " within DSL file: '#{@source_code_file}'" unless @source_code_file.nil?
       message += '.'
-      Rails.logger.error message
+      puts message
       raise message if exec_strict_mode?
     end
 

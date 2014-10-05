@@ -58,11 +58,6 @@ module DSLHelper
       end
     end
 
-    def inject
-
-    end
-
-
 
   end
 
