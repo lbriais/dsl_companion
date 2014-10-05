@@ -1,7 +1,15 @@
 module DSLHelper
   class Interpreter
 
+    attr_accessor :logger
+
     DEFAULT_EXEC_MODE=:lazy
+
+    def initialize(exec_mode=DEFAULT_EXEC_MODE)
+      @interpreter = self
+      self.exec_mode = exec_mode
+    end
+
 
     def run file=nil, &block
       @context = self
@@ -21,10 +29,6 @@ module DSLHelper
       new(exec_mode).run file, &block
     end
 
-    def initialize(exec_mode=DEFAULT_EXEC_MODE)
-      @interpreter = self
-      self.exec_mode = exec_mode
-    end
 
     def exec_mode=(mode)
       if [:strict, true].include? mode
@@ -38,6 +42,7 @@ module DSLHelper
       raise "DSL Interpreter: Invalid execution mode !"
     end
     attr_reader :exec_mode
+
 
     def exec_strict_mode?
       @exec_mode == :strict
@@ -54,8 +59,18 @@ module DSLHelper
       message += ' is unknown'
       message += " within DSL file: '#{@source_code_file}'" unless @source_code_file.nil?
       message += '.'
-      puts message
+      report message
       raise message if exec_strict_mode?
+    end
+
+    private
+
+    def report(msg)
+      if logger.nil?
+        puts msg
+      else
+        logger.error msg
+      end
     end
 
   end
