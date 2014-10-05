@@ -5,7 +5,6 @@
 # http://opensource.org/licenses/MIT
 #-------------------------------------------------------------------------------
 
-require 'tempfile'
 require 'dsl_helper'
 
 # Requires supporting ruby files with custom matchers and macros, etc,

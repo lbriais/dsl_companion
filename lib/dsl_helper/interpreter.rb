@@ -1,6 +1,8 @@
 module DSLHelper
   class Interpreter
 
+
+
     DEFAULT_EXEC_MODE=:lazy
 
     def run file=nil, &block
@@ -43,8 +45,8 @@ module DSLHelper
       @exec_mode == :strict
     end
 
-    def add_feature
-
+    def add_feature(mod)
+      self.extend(mod)
     end
 
 
