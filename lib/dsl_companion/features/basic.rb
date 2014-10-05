@@ -26,6 +26,29 @@ module DSLCompanion
         self
       end
 
+      def inject_variable(name, value)
+        # Inject instance variable in the current context
+        injected_accessor = name.to_s.to_sym
+        injected_instance_variable = "@#{injected_accessor}"
+        already_defined = self.instance_variable_defined? injected_instance_variable
+        logger("DSL Interpreter overriding existing variable '#{injected_instance_variable}'", :warn) if already_defined
+        self.instance_variable_set injected_instance_variable, value
+
+        # Defines the method that returns the instance variable and inject into the interpreter's context
+        meta_def "#{injected_accessor}" do
+          self.instance_variable_get injected_instance_variable
+        end
+
+      end
+
+      def logger(msg, level=:info)
+        if @logger.nil?
+          puts "#{level.to_s.upcase}: #{msg}"
+        else
+          @logger.send level, msg
+        end
+      end
+
 
     end
 

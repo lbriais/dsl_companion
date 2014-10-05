@@ -4,7 +4,7 @@ module DSLCompanion
 
     include DSLCompanion::Features::Basic
 
-    attr_accessor :logger
+    attr_writer :logger
 
     DEFAULT_EXEC_MODE=:lazy
 
@@ -62,18 +62,8 @@ module DSLCompanion
       message += ' is unknown'
       message += " within DSL file: '#{@source_code_file}'" unless @source_code_file.nil?
       message += '.'
-      report message
+      logger message, :error unless exec_strict_mode?
       raise message if exec_strict_mode?
-    end
-
-    private
-
-    def report(msg)
-      if logger.nil?
-        puts msg
-      else
-        logger.error msg
-      end
     end
 
   end

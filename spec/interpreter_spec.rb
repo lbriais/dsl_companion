@@ -13,7 +13,6 @@ describe DSLCompanion::Interpreter do
   end
 
   it 'should allow to add extra features through modules' do
-
     module ExtraModule
       def extra_dsl_command
 
@@ -26,15 +25,35 @@ describe DSLCompanion::Interpreter do
     expect(interpreter.respond_to? :extra_dsl_command).to be_truthy
     expect {interpreter.run {extra_dsl_command} }.not_to raise_error
     expect {interpreter.run {unknown_command} }.to raise_error
-
   end
 
   it 'should give access to some convenience methods' do
     interpreter = subject.new
     expect(interpreter.respond_to? :define).to be_truthy
-    expect(interpreter.respond_to? :define).to be_truthy
-    expect(interpreter.respond_to? :define).to be_truthy
+    expect(interpreter.respond_to? :interpreter).to be_truthy
+    expect(interpreter.respond_to? :interpreter?).to be_truthy
   end
+
+  it 'should be able to inject new variables in interpreter' do
+
+    module ExtraModule
+      def define_stuff stuff_name, value
+        interpreter.inject_variable stuff_name, value
+      end
+    end
+
+    interpreter = subject.new :strict
+    interpreter.add_feature ExtraModule
+
+    interpreter.run do
+      define_stuff :pipo, 'Hello world'
+    end
+    expect {interpreter.run {typo} }.to raise_error
+    expect {interpreter.run {pipo} }.not_to raise_error
+
+  end
+
+
 
   context 'when in lazy mode' do
 
@@ -50,7 +69,6 @@ describe DSLCompanion::Interpreter do
     it 'should raise exceptions if errors in the DSL'do
       interpreter = subject.new :strict
       expect {interpreter.run {unknown_command} }.to raise_error
-
     end
 
   end

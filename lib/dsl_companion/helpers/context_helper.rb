@@ -13,7 +13,7 @@ module DSLCompanion
     # end
 
 
-    def execute_within_context context=@context, &block
+    def execute_within_context(context=@context, &block)
       # Execute the block if any
       if block_given?
         last_saved_context = @context
@@ -28,6 +28,8 @@ module DSLCompanion
         end
       end
     end
+
+
 
 
     #  def within_dictionary?
