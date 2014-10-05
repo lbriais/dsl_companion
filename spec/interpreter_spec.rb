@@ -13,14 +13,14 @@ describe DSLCompanion::Interpreter do
   end
 
   it 'should allow to add extra features through modules' do
-    module ExtraModule
+    module ExtraFeatureModule
       def extra_dsl_command
 
       end
     end
 
     interpreter = subject.new :strict
-    interpreter.add_feature ExtraModule
+    interpreter.add_feature ExtraFeatureModule
 
     expect(interpreter.respond_to? :extra_dsl_command).to be_truthy
     expect {interpreter.run {extra_dsl_command} }.not_to raise_error
@@ -36,22 +36,23 @@ describe DSLCompanion::Interpreter do
 
   it 'should be able to inject new variables in interpreter' do
 
-    module ExtraModule
+    module ExtraFeatureModule
       def define_stuff stuff_name, value
         interpreter.inject_variable stuff_name, value
       end
     end
 
     interpreter = subject.new :strict
-    interpreter.add_feature ExtraModule
+    interpreter.add_feature ExtraFeatureModule
 
     interpreter.run do
       define_stuff :pipo, 'Hello world'
     end
-    expect {interpreter.run {typo} }.to raise_error
-    expect {interpreter.run {pipo} }.not_to raise_error
+    expect {interpreter.run {typo == 'Hello world'} }.to raise_error
+    expect {interpreter.run {pipo == 'Hello world'} }.not_to raise_error
 
   end
+
 
 
 

@@ -43,7 +43,7 @@ module DSLCompanion
 
       def logger(msg, level=:info)
         if @logger.nil?
-          puts "#{level.to_s.upcase}: #{msg}"
+          STDERR.puts "#{level.to_s.upcase}: #{msg}"
         else
           @logger.send level, msg
         end
