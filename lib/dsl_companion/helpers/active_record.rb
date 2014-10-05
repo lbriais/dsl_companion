@@ -1,4 +1,4 @@
-module DSLHelper
+module DSLCompanion
 
   module ActiveRecordAttributesExposer
     def add_dsl_attributes(record)

@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'dsl_helper/version'
+require 'dsl_companion/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "dsl_helper"
-  spec.version       = DslHelper::VERSION
+  spec.name          = "dsl_companion"
+  spec.version       = DSLCompanion::VERSION
   spec.authors       = ["Laurent B."]
   spec.email         = ["lbnetid+gh@gmail.com"]
   spec.summary       = %q{TODO: Write a short summary. Required.}

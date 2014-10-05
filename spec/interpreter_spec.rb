@@ -1,15 +1,15 @@
 require 'spec_helper'
 
-describe DSLHelper::Interpreter do
+describe DSLCompanion::Interpreter do
 
-  subject{DSLHelper::Interpreter}
+  subject{DSLCompanion::Interpreter}
 
   it 'should be used with a block of commands' do
     the_class=nil
     subject.run do
       the_class = self.class
     end
-    expect(the_class == DSLHelper::Interpreter).to be_truthy
+    expect(the_class == DSLCompanion::Interpreter).to be_truthy
   end
 
   it 'should allow to add extra features through modules' do

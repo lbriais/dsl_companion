@@ -1,4 +1,4 @@
-module DSLHelper
+module DSLCompanion
   class Interpreter
 
     attr_accessor :logger

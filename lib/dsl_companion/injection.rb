@@ -1,4 +1,4 @@
-module DSLHelper
+module DSLCompanion
 
   module Injection
 
