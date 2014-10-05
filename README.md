@@ -1,5 +1,9 @@
 # DslHelper
+# EasyAppHelper
 
+ [![Build Status](https://travis-ci.org/lbriais/dsl_companion.png?branch=master)](https://travis-ci.org/lbriais/dsl_companion)
+ [![Gem Version](https://badge.fury.io/rb/dsl_companion.png)](http://badge.fury.io/rb/dsl_companion)
+ 
 TODO: Write a gem description
 
 ## Installation
