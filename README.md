@@ -6,6 +6,8 @@
  
 TODO: Write a gem description
 
+Still not ready for deployment. stay tuned.
+
 ## Installation
 
 Add this line to your application's Gemfile:
