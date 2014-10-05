@@ -1,4 +1,5 @@
 module DSLCompanion
+
   class Interpreter
 
     include DSLCompanion::Features::Basic
@@ -76,4 +77,5 @@ module DSLCompanion
     end
 
   end
+
 end
