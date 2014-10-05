@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = DSLCompanion::VERSION
   spec.authors       = ["Laurent B."]
   spec.email         = ["lbnetid+gh@gmail.com"]
-  spec.summary       = %q{Provides a customizable interpreter to run your own internal DSLs}
-  spec.description   = %q{The goal of this gem is to provide a versatile DSL interpreter}
+  spec.summary       = %q{Provides a customizable interpreter to run your own internal DSLs.}
+  spec.description   = %q{The goal of this gem is to provide a versatile DSL interpreter.}
   spec.homepage      = ""
   spec.license       = "MIT"
 
