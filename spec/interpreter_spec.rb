@@ -34,6 +34,31 @@ describe DSLCompanion::Interpreter do
     expect(interpreter.respond_to? :interpreter?).to be_truthy
   end
 
+  it 'should give the same result for define_<something>(*args) and define(:something, *args)' do
+
+    module ExtraFeatureModule
+      def define_stuff stuff_name, value
+        interpreter.inject_variable stuff_name, value
+      end
+    end
+    interpreter = subject.new :strict
+    interpreter.add_feature ExtraFeatureModule
+    a,b = nil,nil
+
+    interpreter.run do
+      define_stuff :foo, 'Foo Bar'
+      a = foo
+      define :stuff, :bar, 'Foo Bar'
+      b = bar
+    end
+
+    expect(a == b).to be_truthy
+
+  end
+
+
+
+
   it 'should be able to inject new variables in interpreter' do
 
     module ExtraFeatureModule
