@@ -10,7 +10,7 @@ module DSLCompanion
       # @param [Object[]] args
       # @param [Proc] block
       # @return [Anything returned by the method]
-      def define *args, &block
+      def define(*args, &block)
         extra = args.shift
         method_name = "define_#{extra}"
         if respond_to? method_name.to_sym
@@ -23,15 +23,15 @@ module DSLCompanion
       def execute_within_context(context=@context, &block)
         # Execute the block if any
         if block_given?
-          last_saved_context = @context
-          @context = context
+          last_saved_context = @current_context
+          @current_context = context
           begin
-            logger "Switching to context: #{@context} (from #{last_saved_context})"
-            @context.send :instance_variable_set, '@interpreter', @interpreter
-            @context.instance_eval(&block)
+            logger "Switching to context: #{@current_context} (from #{last_saved_context})"
+            MetaHelper.inject_variable @current_context, :interpreter, @interpreter
+            @current_context.instance_eval(&block)
           ensure
-            @context = last_saved_context
-            logger "Back to context: #{@context}"
+            @current_context = last_saved_context
+            logger "Back to context: #{@current_context}"
           end
         end
       end
@@ -51,8 +51,6 @@ module DSLCompanion
           @logger.send level, msg
         end
       end
-
-
 
     end
 

@@ -11,6 +11,7 @@ module DSLCompanion
     def initialize(exec_mode=DEFAULT_EXEC_MODE)
       @interpreter = self
       self.exec_mode = exec_mode
+      @current_context = self
     end
 
 
