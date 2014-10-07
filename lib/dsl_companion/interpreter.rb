@@ -15,7 +15,7 @@ module DSLCompanion
     end
 
 
-    def run file=nil, &block
+    def run(file=nil, &block)
       @context = self
       if file.nil?
         self.instance_eval &block
@@ -29,7 +29,7 @@ module DSLCompanion
       @source_code_file = nil
     end
 
-    def self.run file=nil, exec_mode=DEFAULT_EXEC_MODE, &block
+    def self.run(file=nil, exec_mode=DEFAULT_EXEC_MODE, &block)
       new(exec_mode).run file, &block
     end
 
@@ -43,7 +43,7 @@ module DSLCompanion
         @exec_mode = :lazy
         return @exec_mode
       end
-      raise "DSL Interpreter: Invalid execution mode !"
+      raise 'DSL Interpreter: Invalid execution mode !'
     end
     attr_reader :exec_mode
 

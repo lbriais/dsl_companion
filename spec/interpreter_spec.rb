@@ -37,7 +37,7 @@ describe DSLCompanion::Interpreter do
   it 'should give the same result for define_<something>(*args) and define(:something, *args)' do
 
     module ExtraFeatureModule
-      def define_stuff stuff_name, value
+      def define_stuff(stuff_name, value)
         interpreter.inject_variable stuff_name, value
       end
     end
@@ -62,7 +62,7 @@ describe DSLCompanion::Interpreter do
   it 'should be able to inject new variables in interpreter' do
 
     module ExtraFeatureModule
-      def define_stuff stuff_name, value
+      def define_stuff(stuff_name, value)
         interpreter.inject_variable stuff_name, value
       end
     end

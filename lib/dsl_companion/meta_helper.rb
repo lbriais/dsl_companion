@@ -6,7 +6,7 @@ module MetaHelper
     end
   end
 
-  def meta_eval &block
+  def meta_eval(&block)
     metaclass.instance_eval &block
   end
 

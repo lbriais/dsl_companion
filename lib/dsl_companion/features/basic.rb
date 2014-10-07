@@ -37,7 +37,7 @@ module DSLCompanion
       end
 
       def interpreter?
-        self.is_a? DSLHelper::Interpreter
+        self.is_a? DSLCompanion::Interpreter
       end
 
       def interpreter
