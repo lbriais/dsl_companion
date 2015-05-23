@@ -5,6 +5,7 @@ module DSLCompanion
     include DSLCompanion::Features::Basic
 
     attr_writer :logger
+    attr_reader :current_context
 
     DEFAULT_EXEC_MODE=:lazy
 
@@ -16,7 +17,6 @@ module DSLCompanion
 
 
     def run(file=nil, &block)
-      @context = self
       if file.nil?
         self.instance_eval &block
       else

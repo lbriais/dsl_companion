@@ -3,7 +3,7 @@ module DSLCompanion
 
     module Basic
 
-      include MetaHelper
+      include DSLCompanion::MetaHelper
 
       # If any method named define_<something>(*args) is in the DSL, then it provides an alternate
       # generic syntax of define(:something, *args)
@@ -41,7 +41,7 @@ module DSLCompanion
       end
 
       def interpreter
-        self
+        self if interpreter?
       end
 
       def logger(msg, level=:info)
