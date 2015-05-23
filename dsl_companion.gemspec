@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['lbnetid+gh@gmail.com']
   spec.summary       = %q{Provides a customizable interpreter to run your own internal DSLs.}
   spec.description   = %q{The goal of this gem is to provide a versatile DSL interpreter.}
-  spec.homepage      = ''
+  spec.homepage      = 'https://github.com/lbriais/dsl_companion'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")
