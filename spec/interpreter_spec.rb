@@ -99,5 +99,9 @@ describe DSLCompanion::Interpreter do
 
   end
 
+  it 'should support interpreting code as a string'
+
+  it 'should provide an interactive mode'
+
 
 end
