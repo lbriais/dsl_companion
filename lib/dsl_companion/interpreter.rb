@@ -53,7 +53,9 @@ module DSLCompanion
     end
 
     def add_feature(mod)
-      self.extend(mod)
+      self.meta_eval do
+        include mod
+      end
     end
 
     def method_missing(symbolic_name, *args)
