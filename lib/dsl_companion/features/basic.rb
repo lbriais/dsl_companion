@@ -44,7 +44,7 @@ module DSLCompanion
         self if interpreter?
       end
 
-      def logger(msg, level=:info)
+      def logger(msg, level=:debug)
         if @logger.nil?
           STDERR.puts "#{level.to_s.upcase}: #{msg}"
         else
